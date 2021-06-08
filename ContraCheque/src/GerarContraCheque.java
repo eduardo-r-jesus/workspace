@@ -7,14 +7,31 @@ public class GerarContraCheque {
 
 		DecimalFormat df = new DecimalFormat();
 		df.applyPattern("R$ 0.00");
-		
+
 		float valorHora = 10f;
 
 		String matricula = JOptionPane.showInputDialog("Informe sua matrícula: ");
 		String nome = JOptionPane.showInputDialog("Informe o seu nome: ");
-		int hora = Integer.parseInt(JOptionPane.showInputDialog("Informe o total de horas trabalhadas: "));
-		float minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
 
+		int hora = Integer.parseInt(JOptionPane.showInputDialog("Informe o total de horas trabalhadas: "));
+		while (hora < 0) {
+			JOptionPane.showMessageDialog(null, "As horas trabalhadas não pode ser menor que 0.");
+			hora = Integer.parseInt(JOptionPane.showInputDialog("Informe o total de horas trabalhadas: "));
+		}
+		
+		float minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
+		while (minutos < 0 || minutos > 59) {
+			
+			if (minutos < 0) {
+				JOptionPane.showMessageDialog(null, "Os minutos trabalhados não pode ser menor que 0.");
+				minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
+			} 
+			else if (minutos > 59) {
+				JOptionPane.showMessageDialog(null, "Os minutos não pode ser maior que 59.");
+				minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
+			}			
+		}
+		
 		float salario = (hora * valorHora) + ((minutos / 60) * valorHora);
 
 		int qtdDiasUteis = 19;
@@ -49,19 +66,14 @@ public class GerarContraCheque {
 		} else if (salarioBruto > 4664.68) {
 			valorIR = (salarioBruto * 0.275f) - 869.36f;
 		}
-		
+
 		float salarioLiquido = salarioBruto - valorInss - valorIR;
 
 		JOptionPane.showMessageDialog(null,
-					"** Contra Cheque **" 
-				+ "\nMatrícula/Nome: " + matricula + "/" + nome
-				+ "\nSalário Base: " + df.format(salarioLiquido) 
-				+ "\nValor do DSR: " + df.format(dsr) 
-				+ "\nValor do INSS: " + df.format(valorInss)
-				+ "\nValor do IR: " + df.format(valorIR)
-				+ "\nTotal Bruto: " + df.format(salarioBruto)
-				+ "\nTotal Líquido: " + df.format(salarioLiquido)
-				);
+				"** Contra Cheque **" + "\nMatrícula/Nome: " + matricula + "/" + nome + "\nSalário Base: "
+						+ df.format(salarioLiquido) + "\nValor do DSR: " + df.format(dsr) + "\nValor do INSS: "
+						+ df.format(valorInss) + "\nValor do IR: " + df.format(valorIR) + "\nTotal Bruto: "
+						+ df.format(salarioBruto) + "\nTotal Líquido: " + df.format(salarioLiquido));
 
 	}
 
