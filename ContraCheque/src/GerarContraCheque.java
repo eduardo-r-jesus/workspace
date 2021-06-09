@@ -9,38 +9,33 @@ public class GerarContraCheque {
 		df.applyPattern("R$ 0.00");
 
 		float valorHora = 10f;
-
 		String matricula = JOptionPane.showInputDialog("Informe sua matrícula: ");
 		String nome = JOptionPane.showInputDialog("Informe o seu nome: ");
-
 		int hora = Integer.parseInt(JOptionPane.showInputDialog("Informe o total de horas trabalhadas: "));
+
 		while (hora < 0) {
 			JOptionPane.showMessageDialog(null, "As horas trabalhadas não pode ser menor que 0.");
 			hora = Integer.parseInt(JOptionPane.showInputDialog("Informe o total de horas trabalhadas: "));
 		}
-		
+
 		float minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
+
 		while (minutos < 0 || minutos > 59) {
-			
+
 			if (minutos < 0) {
 				JOptionPane.showMessageDialog(null, "Os minutos trabalhados não pode ser menor que 0.");
 				minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
-			} 
-			else if (minutos > 59) {
+			} else if (minutos > 59) {
 				JOptionPane.showMessageDialog(null, "Os minutos não pode ser maior que 59.");
 				minutos = Float.parseFloat(JOptionPane.showInputDialog("Informe o restante dos minutos trabalhados: "));
-			}			
+			}
 		}
-		
-		float salario = (hora * valorHora) + ((minutos / 60) * valorHora);
 
+		float salario = (hora * valorHora) + ((minutos / 60) * valorHora);
 		int qtdDiasUteis = 19;
 		int qtsDomingosFeriados = 6;
-
 		float dsr = (((hora + (minutos / 60)) / qtdDiasUteis) * qtsDomingosFeriados) * valorHora;
-
 		float salarioBruto = salario + dsr;
-
 		float valorInss = 0;
 
 		if (salarioBruto <= 1100) {
