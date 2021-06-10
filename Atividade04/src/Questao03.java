@@ -30,3 +30,18 @@ public class Questao03 {
 	}
 
 }
+
+//solução professor
+//public static void main(String[] args) {
+//	int num1 = Integer.parseInt(JOptionPane.showInputDialog("Digite 1 número!"));
+//	int num2 = Integer.parseInt(JOptionPane.showInputDialog("Digite 1 número!"));
+//
+//	String numeros = "";
+//		for (int i = num1; num2 >= i; i++) {
+//			numeros += i + "," ;
+//		}
+//		JOptionPane.showMessageDialog(null, "Os números entre " + num1 + " e " + num2 + " são: " + numeros);
+//
+//} 
+
+
