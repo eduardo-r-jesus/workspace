@@ -96,14 +96,17 @@ public class AlgoritmoCpf {
 			cpfValido += cpf[i];
 		}
 
-		cpfValido = formatarCPF(cpfValido);
-	
+		//cpfValido = formatarCPF(cpfValido);
+
+		//erro ao informar 1 cpf válido
 		String msg = "";
 		if (cpfValido.equals(numCpf) || opcao == 0) {
+			cpfValido = formatarCPF(cpfValido);
 			msg = "Esté é um CPF válido: " + cpfValido;
 		} else {
 			numCpf = formatarCPF(numCpf);
-			msg = "O CPF informado é inválido: " + numCpf + "é diferente " + cpfValido;
+			cpfValido = formatarCPF(cpfValido);
+			msg = "O CPF informado é inválido: " + numCpf + " é diferente " + cpfValido;
 		}
 		JOptionPane.showMessageDialog(null, msg);
 	}
