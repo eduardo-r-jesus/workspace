@@ -21,7 +21,6 @@ public class LoginServlet extends HttpServlet{
 		saida.println("<!DOCTYPE html>");
 		if (loginV.equals(login) && senhaV.equals(senha)) {
 			saida.println("<head>");
-			saida.println("<meta charset=\"UTF-8\">");
 			saida.println("<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">");
 			saida.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
 			saida.println("<title>Home</title>");

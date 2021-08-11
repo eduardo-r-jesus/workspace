@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-<ul>
+	<ul>
         <li><a href="/form-web/formIndex.jsp"><b>Home</b></a></li>
         <li><a href="/form-web/formCadastro.jsp"><b>Cadastro</b></a></li>
         <li><a href="#Contato"><b>Contato</b></a></li>
@@ -43,9 +43,9 @@
                 <select name="escolaridade" class="larguraTexto" id="escolaridade">
                     <option value="Selecione">Selecione</option>
                     <option value="Ensino Fundamental">Ensino Fundamental</option>
-                    <option value="Ensino Médio">Ensino Médio</option>
+                    <option value="Ensino Mï¿½dio">Ensino MÃ©dio</option>
                     <option value="Ensino Superior">Ensino Superior</option>
-                    <option value="Especialização">Especialização</option>
+                    <option value="Especializaï¿½ï¿½o">EspecializaÃ§Ã£o</option>
                     <option value="Mestrado">Mestrado</option>
                     <option value="Doutorado">Doutorado</option>
                 </select>

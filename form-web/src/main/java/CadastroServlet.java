@@ -1,5 +1,9 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -71,7 +75,11 @@ public class CadastroServlet extends HttpServlet {
 		}	
 		saida.println("<tr>");
 		saida.println("<td>Tecnologia</td>");
-		saida.println("<td>"+tec[0]+" - "+tec[1]+" - "+tec[2]+" - "+tec[3]+"</td>");
+		String lsTecno = "";		
+		for (String t : tec) {
+			lsTecno += t + " - ";
+			}
+		saida.println("<td>"+lsTecno+"</td>");		
 		saida.println("</tr>");
 		saida.println("<tr>");
 		saida.println("<td>Grau de Escolaridade</td>");
@@ -80,6 +88,28 @@ public class CadastroServlet extends HttpServlet {
 		saida.println("</table>");
 		saida.println("<a href=\"/form-web/formCadastro.jsp\"><input type=\"submit\" class=\"bt_voltar\" id=\"espacamento\" value=\"Voltar\"></a>");
 		saida.println("</body>");
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+			String url = "jdbc:postgresql://chunee.db.elephantsql.com:5432/ebjmmhdn";
+			String usuarioDb = "ebjmmhdn";
+			String senhaDb = "Q_lQBrTw3n5KYMr1FTCsDHp09OO4jpXR";
+		   Connection cont = DriverManager.getConnection(url, usuarioDb, senhaDb);
+		   saida.println("Ok para a conexão");
+		   
+		   String sql = "insert into pessoa (nome_completo, telefone, dat_nascimento, email, sexo, tecnologia, escolaridade)"
+		   		+ "values('"+nome+"', '"+telefone+"','"+dtNasc+"', '"+email+"','"+sexo+"','"+lsTecno+"','"+escola+"');";
+		 
+		   PreparedStatement pst = cont.prepareStatement(sql);
+		   pst.execute();
+		   pst.close();
+		   cont.close();
+		   
+		   saida.println("Registro gravado no banco!");
+		} catch (Exception e ) {
+			saida.println("Erro de conexão");
+		}
+		
 		saida.println("</html>");
 	}
 
